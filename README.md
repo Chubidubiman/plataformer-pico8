@@ -7,3 +7,5 @@ Plataformer game for pico 8
 - [x] Sprites Implementation
 - [ ] Power Ups
 - [ ] Life Counter
+- [x] Animation in sprites
+- [x] Directon change in sprites
