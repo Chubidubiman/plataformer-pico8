@@ -4,6 +4,15 @@ __lua__
 -- plataform game
 -- jump to up
 
+-- version
+version = "0.1.0-alpha" -- version major.minor.patch-description
+-- alpha : initial phase develop
+-- beta : advance develop
+-- release candidate (rc) : final version
+
+-- ui 
+life_meter = "" -- life meter
+
 -- game variables
 player = {
 	x = 60,
@@ -19,6 +28,7 @@ player = {
 	sprite = 0,
 	frame_counter = 0,
 	facing_right = true,
+	life = 5, -- player life
 }
 
 -- variables of physics
@@ -156,10 +166,23 @@ function update_enemies()
 						player.y + player.h > enemy.y then
 				
 				-- the player plays the enemy - restart game
-				player.x = 60
-				player.y = 100
-				player.dx = 0
-				player.dy = 0
+				if player.life >= 1 then
+					player.life = player.life - 1
+				else
+					player.x = 60
+					player.y = 100
+					player.dx = 0
+			 	player.dy = 0
+			 	player.life = 5
+			 	enemies = {}
+			 	plataforms = {}
+			 	plataforms = {
+ 					{x=0, y=110, w=125, h=8, sprite=63},
+ 					{x=20, y=90, w=32, h=8, sprite=63},
+ 					{x=70, y=70, w=40, h=8, sprite=63},
+					}
+			 end
+	
 				-- opcional: eliminate all enemies
 				-- enemies = {}
 			end
@@ -285,19 +308,28 @@ function _draw()
 	-- reset camera for ui
 	camera()
 	
-	-- instructions
-	print("⬅️➡️ move", 2, 2, 7)
-	print("z jump", 2, 8, 7)
-	print("height: " .. flr(-player.y), 2, 116,7)
-	print("platforms: " .. #plataforms, 2, 14, 7)
- 	print("enemies: " .. #enemies, 2, 20, 7)
+	-- ui
+	for i = 1, player.life do
+		life_meter = life_meter .. "♥"	
+	end
+	
+	print("life " .. life_meter, 2, 2, 8)
+	life_meter = ""
 
+	-- instructions
+	print("⬅️➡️ move", 2, 8, 7)
+	print("z jump", 2, 14, 7)
+	print("platforms: " .. #plataforms, 2, 20, 7)
+ print("enemies: " .. #enemies, 2, 26, 7)
+
+	print("height: " .. flr(-player.y), 2, 110,7)
 	-- jump indicator
 	if player.grounded then
-		print("ground", 2, 122, 11)
+		print("ground", 2, 116, 11)
 	else
-		print("air", 2, 122, 8)
+		print("air", 2, 116, 8)
 	end
+	print("version: " .. version, 2, 122,7)
 end
 
 function player_animation()

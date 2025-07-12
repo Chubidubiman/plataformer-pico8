@@ -6,6 +6,6 @@ Plataformer game for pico 8
 - [x] Enemies
 - [x] Sprites Implementation
 - [ ] Power Ups
-- [ ] Life Counter
+- [x] Life Counter
 - [x] Animation in sprites
 - [x] Directon change in sprites
