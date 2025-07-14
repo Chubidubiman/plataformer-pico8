@@ -1,6 +1,6 @@
 # Plataformer-pico8
 Plataformer game for pico 8
-version: 0.1.1+Fixed-alpha
+Version: 0.1.1-alpha
 
 *Elements in Gameplay:*
 - [x] Height meter
@@ -19,4 +19,4 @@ version: 0.1.1+Fixed-alpha
 *New sprites*
 - [x] Create the player character
 - [x] Create the firs enemy
-- [ ] Create a woman chartacter player
+- [x] Create a woman chartacter player
